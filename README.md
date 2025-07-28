@@ -1,60 +1,119 @@
 # ToneTrigger
 
+![ToneTrigger Logo](logo.png)
+
 ## Overview
 
-ToneTrigger is an innovative live guitar processing application that dynamically switches audio effects based on specific notes, chords, or melodies played by the user. By leveraging real-time audio analysis, ToneTrigger detects predefined musical triggers to seamlessly apply effects like distortion, reverb, or delay, offering a unique performance experience for guitarists. Whether you're a live performer or a studio musician, ToneTrigger enhances your creativity by automating effect changes in sync with your playing.
+ToneTrigger is a comprehensive professional-grade live guitar processing application that dynamically switches audio effects based on real-time musical analysis. By leveraging advanced audio processing algorithms, MIDI integration, and sophisticated trigger systems, ToneTrigger provides an unparalleled performance experience for guitarists. Whether you're a live performer, studio musician, or experimental artist, ToneTrigger enhances your creativity by intelligently automating effect changes in perfect sync with your playing.
 
-## Features
+## Key Features
 
-- **Real-Time Audio Processing**: Low-latency guitar input and effect application using JUCE.
-- **Note/Melody Detection**: Automatically detects specific notes, chords, or melody patterns to trigger effect changes.
-- **Customizable Triggers**: Configure effects to switch based on user-defined musical events (e.g., a Cmaj chord or a melody sequence).
-- **Cross-Platform**: Supports Windows, macOS, iOS, and Android for broad accessibility.
-- **Intuitive UI**: User-friendly interface for setting triggers and tweaking effect parameters.
-- **Extensible Effects**: Supports a range of effects like distortion, reverb, delay, and more, with easy integration for custom DSP.
+### 🎸 **Advanced Audio Processing**
+- **Real-Time Audio Analysis**: Low-latency guitar input processing with sub-10ms latency
+- **Intelligent Note Detection**: Advanced pitch detection using autocorrelation algorithms
+- **Comprehensive Chord Recognition**: 20+ chord types including extended jazz chords with confidence scoring
+- **Melody Pattern Analysis**: Real-time melodic sequence and motif recognition
+- **Harmonic Content Analysis**: Spectral analysis and harmonic tracking
+
+### 🎛️ **Professional Audio Effects**
+- **Distortion**: Soft-clipping distortion with drive and tone controls
+- **Reverb**: FDN-based reverb with room size, damping, and wet/dry mix
+- **Delay**: Echo delay with time, feedback, and mix parameters
+- **Chorus**: LFO-modulated chorus with rate, depth, and mix controls
+- **Filter**: Multi-mode filter (Low-pass, High-pass, Band-pass, Notch) with resonance and drive
+- **Compressor**: Professional compressor with threshold, ratio, attack, release, and makeup gain
+
+### 🎹 **Complete MIDI Integration**
+- **MIDI Device Management**: Full MIDI input/output support with automatic device detection
+- **MIDI Learn System**: Map any MIDI controller to any effect parameter
+- **MIDI Clock Sync**: Synchronization with external MIDI clock sources
+- **MIDI Recording & Playback**: Record MIDI data and play standard MIDI files
+- **Real-Time Control**: Live parameter adjustment via MIDI controllers
+
+### 🎯 **Advanced Trigger System**
+- **Note Triggers**: Trigger effects on specific notes or note ranges
+- **Chord Triggers**: Trigger effects on chord recognition with confidence thresholds
+- **Melody Triggers**: Trigger effects on melodic patterns and sequences
+- **Amplitude Triggers**: Trigger effects based on input level and dynamics
+- **Temporal Triggers**: Time-based effect activation and scheduling
+- **Combination Triggers**: Multiple condition triggers for complex scenarios
+
+### 📊 **Real-Time Visualization**
+- **Waveform Display**: Real-time waveform visualization with customizable scaling
+- **Spectrum Analyzer**: Frequency spectrum with peak hold and customizable resolution
+- **Waterfall Display**: 3D frequency-time visualization for spectral analysis
+- **Oscilloscope**: Real-time oscilloscope display for waveform analysis
+- **Customizable Interface**: User-defined color schemes, grid, and labels
+
+### 💾 **Comprehensive Preset Management**
+- **Complete Presets**: Save all settings including effects, triggers, and audio configuration
+- **Effect Presets**: Individual effect parameter presets with automation
+- **Trigger Presets**: Save and load trigger configurations
+- **Audio Presets**: Audio device and processing settings
+- **Import/Export**: Share presets via files with backup and restore functionality
+- **Preset Categories**: Organize presets into categories and templates
+
+### 🔧 **Advanced Configuration**
+- **Audio Settings**: Sample rate, buffer size, device selection with low-latency optimization
+- **Effect Chains**: Multiple effects in series with individual bypass controls
+- **Parameter Automation**: MIDI-controlled parameter changes and automation
+- **Performance Monitoring**: Real-time latency, CPU usage, and memory tracking
+- **Cross-Platform**: Native support for Windows, macOS, and Linux
 
 ## Tech Stack
 
-- **JUCE (C++)**: Core framework for low-latency audio processing and effect implementation.
-- **Essentia**: Real-time audio analysis for note and melody detection.
-- **Qt**: Cross-platform UI for configuring triggers and effects.
-- **CMake**: Build system for managing dependencies and cross-platform compilation.
-- **Optional ML Integration**: ONNX Runtime for advanced melody detection using pre-trained models.
+- **JUCE (C++)**: Core framework for low-latency audio processing, MIDI integration, and cross-platform UI
+- **Advanced DSP Algorithms**: Custom implementations for real-time audio analysis and effect processing
+- **MIDI Framework**: Complete MIDI device management and protocol handling
+- **CMake**: Modern build system for managing dependencies and cross-platform compilation
+- **Real-Time Audio**: Optimized for sub-10ms latency with efficient buffer management
+- **Professional Effects**: Industry-standard audio effects with parameter automation
 
 ## Installation
 
 ### Prerequisites
 - C++17-compatible compiler (e.g., GCC, Clang, MSVC)
 - CMake 3.15 or higher
-- JUCE 7.x
-- Qt 5 or 6
-- Essentia library
-- Audio interface for low-latency guitar input (e.g., Focusrite Scarlett, iRig)
+- JUCE 7.x or higher
+- Audio interface for low-latency guitar input (e.g., Focusrite Scarlett, iRig, Behringer UMC)
+- MIDI controller (optional, for external control)
+- 4GB RAM minimum, 8GB recommended
+- Modern multi-core processor for optimal performance
 
 ### Build Instructions
 1. Clone the repository:
-   ```
+   ```bash
    git clone https://github.com/makalin/ToneTrigger.git
    cd ToneTrigger
    ```
+
 2. Install dependencies:
-   - Install JUCE: Follow instructions at [JUCE Documentation](https://juce.com/).
-   - Install Qt: Download from [Qt Downloads](https://www.qt.io/download).
-   - Install Essentia: Follow [Essentia Installation Guide](https://essentia.upf.edu/installing.html).
-3. Configure the project:
+   - **JUCE**: Download and install from [JUCE Downloads](https://juce.com/get-juce/download)
+   - **CMake**: Install from [CMake Downloads](https://cmake.org/download/)
+   - **Audio Interface**: Ensure your audio interface drivers are installed
+
+3. Build using the provided script:
+   ```bash
+   chmod +x build.sh
+   ./build.sh
    ```
+
+4. Or build manually:
+   ```bash
    mkdir build
    cd build
-   cmake ..
+   cmake .. -DCMAKE_BUILD_TYPE=Release
+   cmake --build . --config Release
    ```
-4. Build the project:
-   ```
-   cmake --build .
-   ```
+
 5. Run ToneTrigger:
-   - On Windows: `./ToneTrigger.exe`
-   - On macOS: `./ToneTrigger.app`
-   - On Linux: `./ToneTrigger`
+   - **Windows**: `./build/bin/ToneTrigger.exe`
+   - **macOS**: `./build/ToneTrigger.app` or `./build/bin/ToneTrigger`
+   - **Linux**: `./build/bin/ToneTrigger`
+
+For detailed build instructions, see [BUILDING.md](BUILDING.md).
+
+For comprehensive feature documentation, see [FEATURES.md](FEATURES.md).
 
 ## Usage
 
@@ -74,13 +133,43 @@ ToneTrigger is an innovative live guitar processing application that dynamically
 4. **Save Presets**:
    - Save your trigger and effect configurations for future performances.
 
+### 🎛️ **Advanced Usage Features**
+- **MIDI Integration**: Connect MIDI controllers for hands-free parameter control
+- **Real-Time Visualization**: Monitor your signal with waveform, spectrum, and waterfall displays
+- **Advanced Triggers**: Set up complex trigger conditions with confidence thresholds
+- **Effect Chains**: Create sophisticated effect chains with individual bypass controls
+- **Performance Monitoring**: Track latency, CPU usage, and audio statistics in real-time
+- **Preset Management**: Organize and share presets with import/export functionality
+
 ## Roadmap
 
-- Add support for cloud-based preset sharing via Firebase.
-- Implement advanced melody detection using machine learning models.
-- Support for VST/AU plugin export for use in DAWs.
-- Add WebSocket integration for real-time remote control.
-- Optimize latency for high-performance live settings.
+### 🚀 **Upcoming Features**
+- **Cloud Integration**: Cloud-based preset sharing and collaboration
+- **Machine Learning**: AI-powered analysis and intelligent effect suggestions
+- **Plugin Export**: VST3/AU/AAX plugin export for DAW integration
+- **Advanced Visualization**: 3D audio visualization and immersive displays
+- **Network Features**: Real-time remote control and multi-user collaboration
+
+### 🎯 **Advanced Analysis**
+- **Neural Networks**: Deep learning for advanced audio analysis
+- **Pattern Recognition**: Sophisticated musical pattern detection
+- **Genre Classification**: Automatic genre and style identification
+- **Mood Analysis**: Emotional content and musical mood detection
+- **Style Recognition**: Playing style and technique identification
+
+### 🌐 **Collaboration Features**
+- **Real-time Collaboration**: Multi-user live performance support
+- **Preset Marketplace**: Community preset sharing and rating system
+- **Remote Control**: Web-based remote control interface
+- **Streaming Integration**: Live streaming platform integration
+- **Social Features**: Community features and artist profiles
+
+### 📱 **Mobile & Web**
+- **iOS/Android Apps**: Mobile companion applications
+- **Web Interface**: Browser-based control and monitoring
+- **Cross-Platform Sync**: Seamless synchronization across devices
+- **Mobile Control**: Smartphone/tablet remote control
+- **Cloud Backup**: Automatic cloud backup and restore
 
 ## Contributing
 
